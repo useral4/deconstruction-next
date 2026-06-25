@@ -1,0 +1,12 @@
+{
+  "name": "deconstruction-audit",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "audit": "node audit-tilda.mjs",
+    "download-cdn": "node download-cdn-images.mjs"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0"
+  }
+}

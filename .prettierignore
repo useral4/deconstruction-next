@@ -1,0 +1,11 @@
+.next
+node_modules
+legacy
+scripts/node_modules
+public/images
+_data
+_docs/site-audit.md
+_docs/indexing-notes.md
+roadmap.md
+scripts
+src/content
