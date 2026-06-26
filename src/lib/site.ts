@@ -20,6 +20,10 @@ export const siteConfig = {
 export const mainNavigation = [
   { label: "Услуги", href: "/uslugi" },
   { label: "Проекты", href: "/nashi-proekty" },
+  { label: "Аренда", href: "/arenda-demontazhnykh-robotov" },
+  { label: "Блог", href: "/demontazhnyy-blog" },
+  { label: "Новости", href: "/novosti" },
+  { label: "География", href: "/gorod" },
   { label: "Цены", href: "/price" },
   { label: "О компании", href: "/o-kompanii" },
   { label: "Контакты", href: "/kontakty" },

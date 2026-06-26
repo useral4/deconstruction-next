@@ -2,6 +2,7 @@ import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { cases } from "@/content/cases";
+import { pages, type PageMeta } from "@/content/pages";
 import { services } from "@/content/services";
 import { LeadForm } from "@/components/forms/lead-form";
 import { SectionHeading } from "@/components/section-heading";
@@ -124,6 +125,105 @@ export function CasesCatalog() {
       </section>
     </>
   );
+}
+
+const catalogMeta: Record<
+  "blog" | "news" | "rental" | "geo",
+  {
+    eyebrow: string;
+    title: string;
+    description: string;
+    itemLabel: string;
+  }
+> = {
+  blog: {
+    eyebrow: "82 материала",
+    title: "Демонтажный блог",
+    description:
+      "Технологии демонтажа, безопасность, роботы Brokk, разбор сложных объектов и практические советы инженеров.",
+    itemLabel: "Статья",
+  },
+  news: {
+    eyebrow: "31 публикация",
+    title: "Новости",
+    description:
+      "Новости компании, техники, строительной отрасли и новых подходов к демонтажным работам.",
+    itemLabel: "Новость",
+  },
+  rental: {
+    eyebrow: "10 моделей",
+    title: "Аренда роботов для демонтажа",
+    description:
+      "Каталог роботов Brokk для аренды с экипажем, доставкой на объект и подбором навесного оборудования.",
+    itemLabel: "Аренда",
+  },
+  geo: {
+    eyebrow: "84 направления",
+    title: "География работ",
+    description:
+      "Страницы по городам, районам Санкт-Петербурга, Ленинградской области и станциям метро.",
+    itemLabel: "Гео",
+  },
+};
+
+function pageHref(page: PageMeta) {
+  return `/${page.slug.replace(/^\/+|\/+$/g, "")}`;
+}
+
+function PageCatalog({ category }: { category: keyof typeof catalogMeta }) {
+  const meta = catalogMeta[category];
+  const items = pages.filter((page) => page.category === category);
+
+  return (
+    <>
+      <PageHero
+        eyebrow={meta.eyebrow}
+        title={meta.title}
+        description={meta.description}
+      />
+      <section className="section-space bg-[#f4f2ed]">
+        <div className="site-container grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {items.map((page, index) => (
+            <Link
+              key={`${page.id}-${page.slug}`}
+              href={pageHref(page)}
+              className="group flex min-h-64 flex-col rounded-3xl bg-white p-7 transition hover:-translate-y-1 hover:shadow-xl"
+            >
+              <span className="text-xs font-black tracking-[.15em] text-stone-400 uppercase">
+                {meta.itemLabel} {String(index + 1).padStart(3, "0")}
+              </span>
+              <h2 className="text-ink mt-4 text-xl leading-tight font-black">
+                {page.h1 || page.title}
+              </h2>
+              <p className="mt-4 line-clamp-3 text-sm leading-6 text-stone-500">
+                {cleanText(page.description)}
+              </p>
+              <span className="mt-auto flex items-center gap-2 pt-6 text-sm font-black uppercase">
+                Подробнее
+                <ArrowRight className="size-4 transition group-hover:translate-x-1" />
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+    </>
+  );
+}
+
+export function BlogCatalog() {
+  return <PageCatalog category="blog" />;
+}
+
+export function NewsCatalog() {
+  return <PageCatalog category="news" />;
+}
+
+export function RentalCatalog() {
+  return <PageCatalog category="rental" />;
+}
+
+export function GeoCatalog() {
+  return <PageCatalog category="geo" />;
 }
 
 export function ContactsPage() {

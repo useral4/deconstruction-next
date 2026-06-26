@@ -42,8 +42,23 @@ button {
   -webkit-tap-highlight-color: transparent;
 }
 
+a[href],
+button:not(:disabled),
+[role="button"],
+input[type="button"]:not(:disabled),
+input[type="submit"]:not(:disabled),
+input[type="reset"]:not(:disabled),
+summary {
+  cursor: pointer;
+}
+
 .site-container {
   width: min(100% - 2rem, 1280px);
+  margin-inline: auto;
+}
+
+.header-container {
+  width: min(100% - 2rem, 1680px);
   margin-inline: auto;
 }
 
@@ -81,6 +96,20 @@ button {
   transition-property: opacity, filter, transform;
 }
 
+.hero-video-panel video {
+  pointer-events: none;
+}
+
+.hero-video-panel video::-webkit-media-controls,
+.hero-video-panel video::-webkit-media-controls-enclosure,
+.hero-video-panel video::-webkit-media-controls-panel,
+.hero-video-panel video::-webkit-media-controls-overlay-play-button,
+.hero-video-panel video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -101,5 +130,9 @@ button {
 @media (max-width: 640px) {
   .site-container {
     width: min(100% - 1.25rem, 1280px);
+  }
+
+  .header-container {
+    width: min(100% - 1.25rem, 1680px);
   }
 }

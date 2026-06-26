@@ -1,41 +1,38 @@
 import type { MetadataRoute } from "next";
 import { pages } from "@/content/pages";
-import { auditSeo, canonicalForPage, normalizeSlug } from "@/lib/content";
+import { canonicalForPage } from "@/lib/content";
 import { siteConfig } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const redirectSources = new Set(
-    auditSeo.redirects
-      .filter(({ from, to }) => {
-        if (!from?.startsWith("/") || from.includes("(.*)")) return false;
-        try {
-          const target = new URL(to, siteConfig.url);
-          return (
-            target.pathname.replace(/\/+$/, "") !== from.replace(/\/+$/, "")
-          );
-        } catch {
-          return false;
-        }
-      })
-      .map(({ from }) => from.replace(/\/+$/, "") || "/"),
-  );
-  const entries = pages
-    .filter((page) => {
-      const pathname =
-        `/${normalizeSlug(page.slug)}`.replace(/\/+$/, "") || "/";
-      return !redirectSources.has(pathname);
-    })
-    .map((page) => ({
-      url: canonicalForPage(page),
-      lastModified: now,
-      changeFrequency:
-        page.category === "blog" || page.category === "news"
-          ? ("monthly" as const)
-          : ("weekly" as const),
-      priority:
-        page.category === "service" || page.category === "geo" ? 0.8 : 0.6,
-    }));
+  const staticSections: MetadataRoute.Sitemap = [
+    "uslugi",
+    "nashi-proekty",
+    "demontazhnyy-blog",
+    "novosti",
+    "arenda-demontazhnykh-robotov",
+    "gorod",
+    "price",
+    "o-kompanii",
+    "kontakty",
+    "politika-konfidencialnosti",
+    "polzovatelskoe-soglashenie",
+  ].map((slug) => ({
+    url: `${siteConfig.url}/${slug}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: slug === "uslugi" ? 0.9 : 0.7,
+  }));
+  const entries = pages.map((page) => ({
+    url: canonicalForPage(page),
+    lastModified: now,
+    changeFrequency:
+      page.category === "blog" || page.category === "news"
+        ? ("monthly" as const)
+        : ("weekly" as const),
+    priority:
+      page.category === "service" || page.category === "geo" ? 0.8 : 0.6,
+  }));
 
   return [
     {
@@ -44,6 +41,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 1,
     },
+    ...staticSections,
     ...Array.from(new Map(entries.map((entry) => [entry.url, entry])).values()),
   ];
 }

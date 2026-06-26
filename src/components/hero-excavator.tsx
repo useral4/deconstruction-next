@@ -28,14 +28,19 @@ export function HeroExcavator() {
 
   return (
     <section className="hero-excavator-scene relative isolate min-h-screen overflow-hidden bg-[#f4f2ed]">
-      <div className="hero-video-panel absolute inset-y-0 right-0 z-0 w-full opacity-20 sm:opacity-30 lg:w-[56vw] lg:opacity-100">
+      <div className="hero-video-panel pointer-events-none absolute inset-y-0 right-0 z-0 w-full opacity-20 sm:opacity-30 lg:w-[56vw] lg:opacity-100">
         <video
           ref={videoRef}
+          aria-hidden="true"
           autoPlay
+          disablePictureInPicture
+          disableRemotePlayback
           loop
           muted
           playsInline
           preload="auto"
+          tabIndex={-1}
+          controlsList="nodownload nofullscreen noremoteplayback"
           className="size-full object-cover"
         >
           <source src="/media/hero-demolition-scroll.mp4" type="video/mp4" />

@@ -2,10 +2,14 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import {
   AboutPage,
+  BlogCatalog,
   CasesCatalog,
   ContactsPage,
+  GeoCatalog,
   LegalPage,
+  NewsCatalog,
   PricePage,
+  RentalCatalog,
   ServicesCatalog,
 } from "@/components/catalog-page";
 import { ContentPage } from "@/components/content-page";
@@ -28,6 +32,26 @@ const specialMetadata: Record<string, { title: string; description: string }> =
     "nashi-proekty": {
       title: "Наши проекты",
       description: "Реализованные проекты Deconstruction Group.",
+    },
+    "demontazhnyy-blog": {
+      title: "Демонтажный блог",
+      description:
+        "Статьи о демонтаже, роботах Brokk, безопасности и технологиях работ.",
+    },
+    novosti: {
+      title: "Новости",
+      description:
+        "Новости Deconstruction Group, техники и современных демонтажных технологий.",
+    },
+    "arenda-demontazhnykh-robotov": {
+      title: "Аренда роботов для демонтажа",
+      description:
+        "Каталог роботов Brokk для аренды с экипажем и доставкой на объект.",
+    },
+    gorod: {
+      title: "География работ",
+      description:
+        "Демонтажные работы в городах, районах Санкт-Петербурга и рядом с метро.",
     },
     kontakty: {
       title: "Контакты",
@@ -105,6 +129,10 @@ export default async function DynamicPage({ params }: Props) {
 
   if (normalized === "uslugi") return <ServicesCatalog />;
   if (normalized === "nashi-proekty") return <CasesCatalog />;
+  if (normalized === "demontazhnyy-blog") return <BlogCatalog />;
+  if (normalized === "novosti") return <NewsCatalog />;
+  if (normalized === "arenda-demontazhnykh-robotov") return <RentalCatalog />;
+  if (normalized === "gorod") return <GeoCatalog />;
   if (normalized === "kontakty") return <ContactsPage />;
   if (normalized === "o-kompanii") return <AboutPage />;
   if (normalized === "price") return <PricePage />;
