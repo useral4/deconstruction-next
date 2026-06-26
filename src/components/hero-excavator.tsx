@@ -20,6 +20,7 @@ export function HeroExcavator() {
     const video = videoRef.current;
     if (!video) return;
 
+    video.playbackRate = 0.5;
     video.play().catch(() => {
       // Muted autoplay can still be blocked in rare browser states.
       // In that case the first frame remains as a normal visual poster.
@@ -28,7 +29,7 @@ export function HeroExcavator() {
 
   return (
     <section className="hero-excavator-scene relative isolate min-h-screen overflow-hidden bg-[#f4f2ed]">
-      <div className="hero-video-panel absolute inset-y-0 right-0 z-0 w-full opacity-20 sm:opacity-30 lg:w-[48vw] lg:opacity-100">
+      <div className="hero-video-panel absolute inset-y-0 right-0 z-0 w-full opacity-20 sm:opacity-30 lg:w-[56vw] lg:opacity-100">
         <video
           ref={videoRef}
           autoPlay
@@ -40,8 +41,8 @@ export function HeroExcavator() {
         >
           <source src="/media/hero-demolition-scroll.mp4" type="video/mp4" />
         </video>
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#f4f2ed] via-[#f4f2ed]/45 to-transparent lg:from-transparent lg:via-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-32 bg-gradient-to-r from-[#f4f2ed] to-transparent lg:block" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#f4f2ed]/95 via-[#f4f2ed]/60 to-[#f4f2ed]/10 lg:hidden" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-[48%] bg-[linear-gradient(90deg,#f4f2ed_0%,rgba(244,242,237,0.96)_24%,rgba(244,242,237,0.68)_58%,rgba(244,242,237,0)_100%)] lg:block" />
       </div>
 
       <div className="site-container relative z-10 flex min-h-screen items-start py-20 sm:py-28">

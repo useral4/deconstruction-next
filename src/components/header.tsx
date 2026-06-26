@@ -15,7 +15,7 @@ export function Header() {
   return (
     <>
       <header className="bg-ink/95 sticky top-0 z-50 border-b border-white/10 text-white backdrop-blur-xl">
-        <div className="site-container flex h-18 items-center gap-6">
+        <div className="site-container flex h-20 items-center gap-5">
           <Link href="/" className="relative block h-12 w-36 shrink-0">
             <Image
               src="/media/logo.webp"
@@ -26,12 +26,12 @@ export function Header() {
               className="object-contain object-left"
             />
           </Link>
-          <nav className="ml-auto hidden items-center gap-6 lg:flex">
+          <nav className="ml-auto hidden items-center gap-1 lg:flex xl:gap-2">
             {mainNavigation.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="hover:text-brand text-xs font-black tracking-[.1em] uppercase transition"
+                className="hover:text-brand rounded-full px-3 py-3 text-sm leading-none font-black tracking-[.08em] uppercase transition hover:bg-white/5"
               >
                 {item.label}
               </Link>
@@ -42,7 +42,7 @@ export function Header() {
             onClick={() => {
               if (window.ym) window.ym(85251700, "reachGoal", "phone_click");
             }}
-            className="ml-auto hidden items-center gap-2 font-black sm:flex lg:ml-0"
+            className="ml-auto hidden items-center gap-2 px-2 py-3 text-base font-black sm:flex lg:ml-0"
           >
             <Phone className="text-brand size-4" />
             {siteConfig.phone}
