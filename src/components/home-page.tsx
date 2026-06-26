@@ -85,6 +85,25 @@ const benefits = [
   },
 ];
 
+const methodHighlights = [
+  {
+    title: "Различные методики сноса",
+    text: "Комплексный подход к задаче с применением различных методов демонтажа.",
+  },
+  {
+    title: "Техника и оборудование всегда готово к работе",
+    text: "Постоянное пополнение склада запасных частей для обслуживания и ремонта техники, оборудования.",
+  },
+  {
+    title: "Разнообразный парк техники и оборудования",
+    text: "Демонтажные роботы BROKK, гидроклинья TEHMA и DARDA, алмазный инструмент CEDIMA и HILTI.",
+  },
+  {
+    title: "Несколько решений для каждого клиента",
+    text: "К каждому клиенту подходим индивидуально и предлагаем несколько технических решений.",
+  },
+];
+
 const process = [
   "Получаем заявку и изучаем задачу",
   "Выезжаем на объект и предлагаем решения",
@@ -113,13 +132,69 @@ export function HomePage() {
             ["104", "направления работ"],
             ["24 ч", "на первичную оценку"],
           ].map(([value, label]) => (
-            <div key={label} className="px-6 py-7 first:pl-0">
+            <div key={label} className="px-6 py-7 lg:first:pl-0">
               <strong className="font-display text-brand text-4xl font-black">
                 {value}
               </strong>
               <span className="mt-1 block text-sm text-white/50">{label}</span>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="bg-brand text-ink overflow-hidden py-16 sm:py-20 lg:py-24">
+        <div className="site-container">
+          <div className="grid gap-x-16 gap-y-10 lg:grid-cols-2">
+            {methodHighlights.map((item) => (
+              <div key={item.title} className="grid gap-5 sm:grid-cols-[76px_1fr]">
+                <span className="mt-3 hidden h-px bg-black sm:block" />
+                <div>
+                  <h2 className="text-xl leading-tight font-black tracking-[.03em] uppercase sm:text-2xl">
+                    {item.title}
+                  </h2>
+                  <p className="mt-5 max-w-2xl text-lg leading-8 text-black/80">
+                    {item.text}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-20 grid items-end gap-12 lg:grid-cols-[1.25fr_.9fr]">
+            <div className="relative min-h-[260px]">
+              <p className="text-xl leading-none">Деконстракшн групп</p>
+              <div className="font-display relative z-10 mt-8 text-[clamp(4rem,9vw,9rem)] leading-[.78] font-black tracking-[-.03em]">
+                <span className="block">Мы состоим</span>
+                <span className="ml-[34%] block text-white">НАДО*</span>
+              </div>
+              <div className="pointer-events-none absolute right-[8%] bottom-0 hidden aspect-square w-[min(46vw,360px)] rounded-full border border-white/75 lg:block" />
+              <span className="absolute top-7 left-0 size-2 bg-white" />
+              <span className="absolute top-10 right-[28%] hidden text-7xl leading-none font-black text-white lg:block">
+                В
+              </span>
+            </div>
+
+            <div>
+              <div className="relative aspect-[2.7] w-full max-w-[420px] bg-black">
+                <Image
+                  src="/media/nado-logo.webp"
+                  alt="Логотип НАДО"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 420px"
+                  className="object-contain"
+                />
+              </div>
+              <p className="mt-8 max-w-md text-xl leading-8">
+                * Член национальной Ассоциации Демонтажных организаций
+              </p>
+              <Link
+                href="/o-kompanii"
+                className="mt-8 inline-flex items-center gap-2 text-lg font-black"
+              >
+                Подробнее <ArrowRight className="size-5" />
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
