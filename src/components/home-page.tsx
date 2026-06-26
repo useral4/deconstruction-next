@@ -1,11 +1,21 @@
-import { ArrowRight, Award, Check, Clock3, Phone } from "lucide-react";
+import {
+  ArrowRight,
+  Award,
+  Check,
+  Clock3,
+  Gauge,
+  HardHat,
+  ShieldCheck,
+  Sparkles,
+  Wrench,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { cases } from "@/content/cases";
 import { faq } from "@/content/faq";
-import { ExcavatorScrollScene } from "@/components/excavator-scroll-scene";
 import { LeadForm } from "@/components/forms/lead-form";
 import { CalculatorForm } from "@/components/forms/calculator-form";
+import { HeroExcavator } from "@/components/hero-excavator";
 import { SectionHeading } from "@/components/section-heading";
 import { Accordion } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
@@ -52,6 +62,29 @@ const serviceGroups = [
   },
 ];
 
+const benefits = [
+  {
+    icon: Gauge,
+    title: "До 4× быстрее",
+    text: "Робот выполняет большой объём работ за смену и сокращает общий срок проекта.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Безопаснее",
+    text: "Оператор управляет техникой дистанционно и остаётся вне опасной зоны.",
+  },
+  {
+    icon: Wrench,
+    title: "Для сложных условий",
+    text: "Компактная техника работает внутри зданий, на перекрытиях и в ограниченном пространстве.",
+  },
+  {
+    icon: Sparkles,
+    title: "Точный результат",
+    text: "Контролируемое разрушение снижает вибрацию и риск повреждения соседних конструкций.",
+  },
+];
+
 const process = [
   "Получаем заявку и изучаем задачу",
   "Выезжаем на объект и предлагаем решения",
@@ -70,58 +103,7 @@ const projectImages = [
 export function HomePage() {
   return (
     <>
-      <section className="relative isolate min-h-[760px] overflow-hidden bg-[#f4f2ed]">
-        <div className="bg-brand absolute inset-y-0 right-0 -z-10 w-[38%] lg:w-[43%]" />
-        <div className="absolute top-16 -right-20 -z-10 hidden size-[680px] rounded-full border border-black/10 lg:block" />
-        <Image
-          src="/media/hero-robot.webp"
-          alt="Демонтажный робот Brokk"
-          width={1024}
-          height={1023}
-          priority
-          sizes="(max-width: 1024px) 80vw, 48vw"
-          className="pointer-events-none absolute -right-8 -bottom-8 -z-10 aspect-square h-auto w-[48vw] max-w-[760px] sm:-right-12 sm:w-[60vw] lg:right-[-2%] lg:w-[48vw]"
-        />
-        <div className="site-container flex min-h-[760px] items-start py-20 sm:py-28">
-          <div className="max-w-3xl">
-            <Badge>20+ лет в демонтаже</Badge>
-            <h1 className="font-display text-ink mt-6 text-[clamp(3.2rem,7.6vw,7.2rem)] leading-[.82] font-black tracking-[-.04em] text-balance uppercase">
-              Демонтаж
-              <span className="text-brand text-stroke block">без лишнего</span>
-              риска
-            </h1>
-            <p className="mt-7 max-w-xl text-lg leading-8 text-stone-700 sm:text-xl">
-              Разборка, снос и реконструкция роботами Brokk. Работаем в
-              Санкт-Петербурге, Москве и по всей России.
-            </p>
-            <ul className="mt-7 grid max-w-xl gap-3 text-sm font-bold sm:grid-cols-2">
-              {[
-                "Бесплатный выезд инженера",
-                "Собственный парк техники",
-                "Проект и смета под ключ",
-                "Работа на сложных объектах",
-              ].map((item) => (
-                <li key={item} className="flex items-center gap-3">
-                  <span className="bg-brand grid size-6 place-items-center rounded-md">
-                    <Check className="size-4" />
-                  </span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <ButtonLink href="#calculator" size="lg">
-                Рассчитать стоимость
-                <ArrowRight className="size-5" />
-              </ButtonLink>
-              <ButtonLink href={siteConfig.phoneHref} variant="dark" size="lg">
-                <Phone className="size-5" />
-                Позвонить
-              </ButtonLink>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroExcavator />
 
       <section className="bg-ink text-white">
         <div className="site-container grid divide-y divide-white/10 py-4 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
@@ -189,7 +171,42 @@ export function HomePage() {
         </div>
       </section>
 
-      <ExcavatorScrollScene />
+      <section className="section-space bg-ink overflow-hidden text-white">
+        <div className="site-container grid items-center gap-14 lg:grid-cols-[.9fr_1.1fr]">
+          <div className="bg-brand relative min-h-[530px] rounded-3xl">
+            <Image
+              src="/media/brokk-400.webp"
+              alt="Робот Brokk 400"
+              fill
+              sizes="(max-width: 1024px) 100vw, 45vw"
+              className="object-contain p-8 drop-shadow-2xl"
+            />
+            <div className="text-ink absolute -right-5 -bottom-6 rounded-2xl bg-white p-5 shadow-xl">
+              <HardHat className="text-brand-dark size-7" />
+              <strong className="mt-2 block text-xl">
+                Оператор вне зоны риска
+              </strong>
+            </div>
+          </div>
+          <div>
+            <SectionHeading
+              eyebrow="Преимущество"
+              title="Техника, которая берёт опасную работу на себя"
+              description="Дистанционно управляемые роботы дают высокую производительность там, где ручной труд медленнее и опаснее."
+              light
+            />
+            <div className="mt-10 grid gap-7 sm:grid-cols-2">
+              {benefits.map((item) => (
+                <div key={item.title}>
+                  <item.icon className="text-brand size-7" />
+                  <h3 className="mt-4 text-xl font-black">{item.title}</h3>
+                  <p className="mt-2 leading-7 text-white/55">{item.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="section-space bg-[#f4f2ed]">
         <div className="site-container">

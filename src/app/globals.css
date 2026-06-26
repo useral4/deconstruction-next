@@ -76,18 +76,17 @@ button {
   filter: blur(0);
 }
 
-.excavator-scene,
-.excavator-scene * {
+.hero-excavator-scene,
+.hero-excavator-scene * {
   transition-property:
     color, background-color, border-color, box-shadow, opacity;
 }
 
-.excavator-robot,
-.excavator-circle,
-.excavator-dust,
-.excavator-chip,
-.excavator-impact,
-.excavator-stage-content {
+.hero-excavator-robot,
+.hero-excavator-circle,
+.hero-excavator-impact,
+.hero-excavator-spark,
+.hero-excavator-content {
   transition: none;
   will-change: transform, opacity;
 }
