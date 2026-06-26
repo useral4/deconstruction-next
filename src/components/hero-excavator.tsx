@@ -20,7 +20,6 @@ export function HeroExcavator() {
     const video = videoRef.current;
     if (!video) return;
 
-    video.playbackRate = 0.5;
     video.play().catch(() => {
       // Muted autoplay can still be blocked in rare browser states.
       // In that case the first frame remains as a normal visual poster.
