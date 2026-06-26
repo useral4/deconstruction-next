@@ -142,57 +142,51 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="bg-brand text-ink overflow-hidden py-16 sm:py-20 lg:py-24">
-        <div className="site-container">
-          <div className="grid gap-x-16 gap-y-10 lg:grid-cols-2">
-            {methodHighlights.map((item) => (
-              <div key={item.title} className="grid gap-5 sm:grid-cols-[76px_1fr]">
-                <span className="mt-3 hidden h-px bg-black sm:block" />
-                <div>
-                  <h2 className="text-xl leading-tight font-black tracking-[.03em] uppercase sm:text-2xl">
-                    {item.title}
-                  </h2>
-                  <p className="mt-5 max-w-2xl text-lg leading-8 text-black/80">
-                    {item.text}
-                  </p>
-                </div>
-              </div>
-            ))}
+      <section className="section-space bg-[#f4f2ed]">
+        <div className="site-container grid gap-5 lg:grid-cols-[.82fr_1.18fr]">
+          <div className="bg-ink rounded-3xl p-7 text-white sm:p-10">
+            <span className="text-brand text-xs font-black tracking-[.18em] uppercase">
+              Ассоциация
+            </span>
+            <h2 className="font-display mt-5 text-4xl leading-none font-black uppercase sm:text-6xl">
+              Мы состоим в НАДО
+            </h2>
+            <div className="relative mt-8 aspect-[2.7] w-full max-w-[420px] bg-black">
+              <Image
+                src="/media/nado-logo.webp"
+                alt="Логотип НАДО"
+                fill
+                sizes="(max-width: 1024px) 100vw, 420px"
+                className="object-contain"
+              />
+            </div>
+            <p className="mt-7 max-w-md leading-7 text-white/65">
+              Deconstruction Group — член Национальной Ассоциации Демонтажных
+              Организаций.
+            </p>
+            <a
+              href="https://demolition-nado.ru/ru/assoc/about/reestr-chlenov-nado/"
+              target="_blank"
+              rel="noreferrer"
+              className="bg-brand text-ink hover:bg-brand-soft mt-8 inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-sm font-bold tracking-[.08em] uppercase transition"
+            >
+              Подробнее <ArrowRight className="size-4" />
+            </a>
           </div>
 
-          <div className="mt-20 grid items-end gap-12 lg:grid-cols-[1.25fr_.9fr]">
-            <div className="relative min-h-[260px]">
-              <p className="text-xl leading-none">Деконстракшн групп</p>
-              <div className="font-display relative z-10 mt-8 text-[clamp(4rem,9vw,9rem)] leading-[.78] font-black tracking-[-.03em]">
-                <span className="block">Мы состоим</span>
-                <span className="ml-[34%] block text-white">НАДО*</span>
-              </div>
-              <div className="pointer-events-none absolute right-[8%] bottom-0 hidden aspect-square w-[min(46vw,360px)] rounded-full border border-white/75 lg:block" />
-              <span className="absolute top-7 left-0 size-2 bg-white" />
-              <span className="absolute top-10 right-[28%] hidden text-7xl leading-none font-black text-white lg:block">
-                В
-              </span>
-            </div>
-
-            <div>
-              <div className="relative aspect-[2.7] w-full max-w-[420px] bg-black">
-                <Image
-                  src="/media/nado-logo.webp"
-                  alt="Логотип НАДО"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 420px"
-                  className="object-contain"
-                />
-              </div>
-              <p className="mt-8 max-w-md text-xl leading-8">
-                * Член национальной Ассоциации Демонтажных организаций
-              </p>
-              <Link
-                href="/o-kompanii"
-                className="mt-8 inline-flex items-center gap-2 text-lg font-black"
-              >
-                Подробнее <ArrowRight className="size-5" />
-              </Link>
+          <div className="rounded-3xl bg-white p-7 sm:p-10">
+            <SectionHeading
+              eyebrow="Подход"
+              title="Технология под задачу, а не наоборот"
+              description="Основные преимущества собраны компактно: откройте пункт, чтобы посмотреть детали."
+            />
+            <div className="mt-8">
+              <Accordion
+                items={methodHighlights.map((item) => ({
+                  title: item.title,
+                  content: item.text,
+                }))}
+              />
             </div>
           </div>
         </div>
