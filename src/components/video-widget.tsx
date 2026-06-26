@@ -1,8 +1,9 @@
 "use client";
 
-import { Maximize2, X } from "lucide-react";
+import { Maximize2, Play, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 const widgetVideoSrc =
   "https://dl.dropboxusercontent.com/s/h56lzeioj4o4rac/Intelligent%20Demolition%20-%20Brokk%20110.mp4?dl=0";
@@ -10,16 +11,6 @@ const widgetVideoSrc =
 export function VideoWidget() {
   const [visible, setVisible] = useState(true);
   const [expanded, setExpanded] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    video.play().catch(() => {
-      // If autoplay is blocked, the widget still keeps a useful first frame.
-    });
-  }, []);
 
   if (!visible) return null;
 
@@ -27,20 +18,22 @@ export function VideoWidget() {
     <>
       <aside className="bg-ink fixed bottom-5 left-4 z-40 hidden w-[184px] overflow-hidden rounded-2xl border border-white/15 shadow-2xl ring-1 shadow-black/30 ring-black/10 md:block">
         <div className="relative aspect-[0.82] bg-black">
-          <video
-            ref={videoRef}
-            loop
-            autoPlay
-            muted
-            playsInline
-            preload="auto"
-            controlsList="nodownload"
-            disablePictureInPicture
-            className="size-full object-cover opacity-95"
-          >
-            <source src={widgetVideoSrc} type="video/mp4" />
-          </video>
+          <Image
+            src="/media/brokk-110.webp"
+            alt=""
+            fill
+            sizes="184px"
+            className="object-contain p-4 opacity-95"
+          />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/20" />
+          <button
+            type="button"
+            aria-label="Смотреть видео"
+            onClick={() => setExpanded(true)}
+            className="hover:bg-brand hover:text-ink absolute inset-0 m-auto grid size-12 place-items-center rounded-full bg-black/65 text-white backdrop-blur transition"
+          >
+            <Play className="size-5 fill-current" />
+          </button>
           <div className="absolute top-2 right-2 flex gap-2">
             <button
               type="button"
@@ -84,7 +77,8 @@ export function VideoWidget() {
             muted
             playsInline
             controls
-            preload="auto"
+            preload="metadata"
+            poster="/media/brokk-110.webp"
             controlsList="nodownload"
             disablePictureInPicture
             className="max-h-[92vh] w-full max-w-5xl rounded-3xl object-contain shadow-2xl"

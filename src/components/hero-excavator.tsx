@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowRight, Check, Phone } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { ButtonLink } from "@/components/ui/button";
 import { siteConfig } from "@/lib/site";
@@ -14,17 +14,46 @@ const heroPoints = [
 ];
 
 export function HeroExcavator() {
+  const [videoReady, setVideoReady] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
+    const loadVideo = () => setVideoReady(true);
+    const browserWindow = window as Window & {
+      requestIdleCallback?: (
+        callback: IdleRequestCallback,
+        options?: IdleRequestOptions,
+      ) => number;
+      cancelIdleCallback?: (handle: number) => void;
+    };
+    if (browserWindow.requestIdleCallback && browserWindow.cancelIdleCallback) {
+      const idleId = browserWindow.requestIdleCallback(loadVideo, {
+        timeout: 2500,
+      });
+
+      return () => {
+        browserWindow.cancelIdleCallback(idleId);
+      };
+    }
+
+    const timeoutId = window.setTimeout(loadVideo, 1800);
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!videoReady) return;
+
     const video = videoRef.current;
     if (!video) return;
 
+    video.load();
     video.play().catch(() => {
       // Muted autoplay can still be blocked in rare browser states.
-      // In that case the first frame remains as a normal visual poster.
+      // In that case the poster remains as the visual fallback.
     });
-  }, []);
+  }, [videoReady]);
 
   return (
     <section className="hero-excavator-scene relative isolate min-h-screen overflow-hidden bg-[#f4f2ed]">
@@ -38,12 +67,15 @@ export function HeroExcavator() {
           loop
           muted
           playsInline
-          preload="auto"
+          poster="/media/hero-robot.webp"
+          preload="none"
           tabIndex={-1}
           controlsList="nodownload nofullscreen noremoteplayback"
           className="size-full object-cover"
         >
-          <source src="/media/hero-demolition-scroll.mp4" type="video/mp4" />
+          {videoReady && (
+            <source src="/media/hero-demolition-scroll.mp4" type="video/mp4" />
+          )}
         </video>
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#f4f2ed]/95 via-[#f4f2ed]/60 to-[#f4f2ed]/10 lg:hidden" />
         <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-[48%] bg-[linear-gradient(90deg,#f4f2ed_0%,rgba(244,242,237,0.96)_24%,rgba(244,242,237,0.68)_58%,rgba(244,242,237,0)_100%)] lg:block" />
