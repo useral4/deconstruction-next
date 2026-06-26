@@ -78,7 +78,6 @@ export function VideoWidget() {
             playsInline
             controls
             preload="metadata"
-            poster="/media/brokk-110.webp"
             controlsList="nodownload"
             disablePictureInPicture
             className="max-h-[92vh] w-full max-w-5xl rounded-3xl object-contain shadow-2xl"

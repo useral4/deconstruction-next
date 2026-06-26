@@ -51,7 +51,7 @@ export function HeroExcavator() {
     video.load();
     video.play().catch(() => {
       // Muted autoplay can still be blocked in rare browser states.
-      // In that case the poster remains as the visual fallback.
+      // In that case the neutral hero background remains visible.
     });
   }, [videoReady]);
 
@@ -67,7 +67,6 @@ export function HeroExcavator() {
           loop
           muted
           playsInline
-          poster="/media/hero-robot.webp"
           preload="none"
           tabIndex={-1}
           controlsList="nodownload nofullscreen noremoteplayback"
