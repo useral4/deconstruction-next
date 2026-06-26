@@ -76,17 +76,9 @@ button {
   filter: blur(0);
 }
 
-.hero-excavator-scene,
-.hero-excavator-scene * {
-  transition-property:
-    color, background-color, border-color, box-shadow, opacity;
-}
-
-.hero-excavator-video,
-.hero-excavator-circle,
-.hero-excavator-content {
-  transition: none;
-  will-change: transform, opacity;
+.hero-video-panel,
+.hero-video-panel * {
+  transition-property: opacity, filter, transform;
 }
 
 @media (prefers-reduced-motion: reduce) {
