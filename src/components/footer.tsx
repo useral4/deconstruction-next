@@ -7,14 +7,16 @@ export function Footer() {
     <footer className="bg-ink py-14 text-white">
       <div className="site-container grid gap-10 md:grid-cols-[1.2fr_.8fr_.8fr]">
         <div>
-          <div className="relative h-[137px] w-52">
-            <Image
-              src="/media/logo.webp"
-              alt={siteConfig.name}
-              fill
-              sizes="208px"
-              className="object-contain object-left"
-            />
+          <div className="inline-flex h-[148px] w-56 rounded-md bg-white p-3 shadow-sm ring-1 ring-white/20">
+            <div className="relative size-full">
+              <Image
+                src="/media/logo.webp"
+                alt={siteConfig.name}
+                fill
+                sizes="224px"
+                className="object-contain object-left"
+              />
+            </div>
           </div>
           <p className="mt-5 max-w-md leading-7 text-white/55">
             Роботизированный демонтаж, реконструкция и специальные работы на

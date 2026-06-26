@@ -16,15 +16,20 @@ export function Header() {
     <>
       <header className="bg-ink/95 sticky top-0 z-50 border-b border-white/10 text-white backdrop-blur-xl">
         <div className="header-container grid h-20 grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-4">
-          <Link href="/" className="relative block h-12 w-28 shrink-0 2xl:w-36">
-            <Image
-              src="/media/logo.webp"
-              alt={siteConfig.name}
-              fill
-              priority
-              sizes="144px"
-              className="object-contain object-left"
-            />
+          <Link
+            href="/"
+            className="block h-14 w-32 shrink-0 rounded-md bg-white p-1.5 shadow-sm ring-1 ring-white/20 2xl:w-40"
+          >
+            <span className="relative block size-full">
+              <Image
+                src="/media/logo.webp"
+                alt={siteConfig.name}
+                fill
+                priority
+                sizes="160px"
+                className="object-contain object-left"
+              />
+            </span>
           </Link>
           <nav className="hidden min-w-0 items-center justify-center gap-0.5 overflow-hidden xl:flex 2xl:gap-1">
             {mainNavigation.map((item) => (
