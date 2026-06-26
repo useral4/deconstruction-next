@@ -14,7 +14,7 @@ const cardImages = [
   "/media/project-indoor.webp",
   "/media/project-city.webp",
   "/media/project-factory.webp",
-  "/media/project-demolition.webp",
+  "/media/service-brokk.webp",
   "/media/service-cutting.webp",
   "/media/brokk-110.webp",
 ];
@@ -66,7 +66,7 @@ export function ServicesCatalog() {
                 Услуга {String(index + 1).padStart(3, "0")}
               </span>
               <h2 className="text-ink mt-4 text-xl leading-tight font-black">
-                {service.title}
+                {cleanText(service.title)}
               </h2>
               <p className="mt-4 line-clamp-3 text-sm leading-6 text-stone-500">
                 {cleanText(service.description)}
@@ -110,7 +110,7 @@ export function CasesCatalog() {
               </div>
               <div className="p-7">
                 <h2 className="text-ink text-xl leading-tight font-black">
-                  {item.title}
+                  {cleanText(item.title)}
                 </h2>
                 <p className="mt-4 line-clamp-3 text-sm leading-6 text-stone-500">
                   {cleanText(item.description)}
@@ -193,7 +193,7 @@ function PageCatalog({ category }: { category: keyof typeof catalogMeta }) {
                 {meta.itemLabel} {String(index + 1).padStart(3, "0")}
               </span>
               <h2 className="text-ink mt-4 text-xl leading-tight font-black">
-                {page.h1 || page.title}
+                {cleanText(page.h1 || page.title)}
               </h2>
               <p className="mt-4 line-clamp-3 text-sm leading-6 text-stone-500">
                 {cleanText(page.description)}
@@ -280,7 +280,7 @@ export function AboutPage() {
       <PageHero
         eyebrow="О компании"
         title="Инженерный подход к демонтажу"
-        description="Deconstruction Group специализируется на автоматизации сложных демонтажных процессов и применении дистанционно управляемой техники."
+        description="Брокк демонтаж Северо-Запад специализируется на автоматизации сложных демонтажных процессов и применении дистанционно управляемой техники."
       />
       <section className="section-space bg-white">
         <div className="site-container grid items-center gap-14 lg:grid-cols-2">
@@ -295,7 +295,7 @@ export function AboutPage() {
           </div>
           <div>
             <SectionHeading
-              eyebrow="Deconstruction Group"
+              eyebrow="БДСЗ"
               title="Технология вместо лишнего риска"
               description="Мы подбираем методику, технику и навесное оборудование под условия конкретного объекта."
             />

@@ -11,6 +11,7 @@ import {
   getAuditPage,
   getRelatedContent,
   normalizeSlug,
+  sanitizePublicText,
 } from "@/lib/content";
 import { siteConfig } from "@/lib/site";
 
@@ -22,14 +23,14 @@ const categoryNames: Record<string, string> = {
   geo: "Работаем в вашем городе",
   rental: "Аренда техники",
   static: "Информация",
-  other: "Deconstruction Group",
+  other: "Брокк демонтаж Северо-Запад",
 };
 
 const categoryImages: Record<string, string> = {
   case: "/media/project-indoor.webp",
   blog: "/media/project-city.webp",
   news: "/media/project-factory.webp",
-  geo: "/media/project-demolition.webp",
+  geo: "/media/project-city.webp",
   rental: "/media/brokk-110.webp",
   service: "/media/service-brokk.webp",
   other: "/media/service-cutting.webp",
@@ -60,7 +61,7 @@ function breadcrumbs(page: PageMeta) {
   return parts.map((part, index) => ({
     label:
       index === parts.length - 1
-        ? page.h1 || page.title
+        ? sanitizePublicText(page.h1 || page.title)
         : breadcrumbLabels[parts.slice(0, index + 1).join("/")] ||
           part.replaceAll("-", " "),
     href: `/${parts.slice(0, index + 1).join("/")}`,
@@ -74,10 +75,12 @@ export function ContentPage({ page }: { page: PageMeta }) {
   const headings = Object.values(details?.headings || {})
     .flat()
     .filter((heading) => heading && heading !== page.h1)
+    .map((heading) => sanitizePublicText(heading))
     .slice(0, 6);
   const category = categoryNames[page.category] || categoryNames.other;
   const image = categoryImages[page.category] || categoryImages.other;
   const description = cleanText(page.description);
+  const pageTitle = sanitizePublicText(page.h1 || page.title);
   const canonical = canonicalForPage(page);
 
   return (
@@ -109,7 +112,7 @@ export function ContentPage({ page }: { page: PageMeta }) {
           data={{
             "@context": "https://schema.org",
             "@type": "Service",
-            name: page.h1 || page.title,
+            name: pageTitle,
             description,
             url: canonical,
             provider: {
@@ -153,7 +156,7 @@ export function ContentPage({ page }: { page: PageMeta }) {
             {category}
           </span>
           <h1 className="font-display mt-5 max-w-5xl text-5xl leading-[.9] font-black text-balance uppercase sm:text-7xl">
-            {page.h1 || page.title}
+            {pageTitle}
           </h1>
           <p className="mt-6 max-w-3xl text-lg leading-8 text-white/65">
             {description}

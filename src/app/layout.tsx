@@ -59,7 +59,7 @@ export default function RootLayout({
             "@type": ["Organization", "LocalBusiness"],
             name: siteConfig.legalName,
             url: siteConfig.url,
-            logo: `${siteConfig.url}/media/logo.webp`,
+            logo: `${siteConfig.url}/media/logo-bdsz.webp`,
             telephone: siteConfig.phone,
             email: siteConfig.email,
             areaServed: ["Санкт-Петербург", "Москва", "Россия"],

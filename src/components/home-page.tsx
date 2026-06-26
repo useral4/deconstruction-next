@@ -21,6 +21,7 @@ import { Accordion } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { ButtonLink } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
+import { cleanText } from "@/lib/content";
 import { siteConfig } from "@/lib/site";
 
 const serviceGroups = [
@@ -46,7 +47,7 @@ const serviceGroups = [
     title: "Раскалывание",
     href: "/uslugi/raskalyvanie",
     items: ["Гидроклинья", "Камень и скальные породы", "Железобетон"],
-    image: "/media/project-demolition.webp",
+    image: "/media/service-brokk.webp",
   },
   {
     title: "Промышленная чистка",
@@ -116,7 +117,7 @@ const projectImages = [
   "/media/project-indoor.webp",
   "/media/project-city.webp",
   "/media/project-factory.webp",
-  "/media/project-demolition.webp",
+  "/media/service-brokk.webp",
 ];
 
 export function HomePage() {
@@ -161,8 +162,8 @@ export function HomePage() {
               />
             </div>
             <p className="mt-7 max-w-md leading-7 text-white/65">
-              Deconstruction Group — член Национальной Ассоциации Демонтажных
-              Организаций.
+              Брокк демонтаж Северо-Запад — член Национальной Ассоциации
+              Демонтажных Организаций.
             </p>
             <a
               href="https://demolition-nado.ru/ru/assoc/about/reestr-chlenov-nado/"
@@ -299,7 +300,7 @@ export function HomePage() {
                   <div className="relative min-h-64">
                     <Image
                       src={projectImages[index]}
-                      alt={item.title}
+                      alt={cleanText(item.title)}
                       fill
                       sizes="(max-width: 768px) 100vw, 35vw"
                       className="object-cover transition duration-700 group-hover:scale-105"
@@ -310,10 +311,10 @@ export function HomePage() {
                       Проект {String(index + 1).padStart(2, "0")}
                     </span>
                     <h3 className="text-ink mt-3 text-xl leading-tight font-black">
-                      {item.title}
+                      {cleanText(item.title)}
                     </h3>
                     <p className="mt-4 line-clamp-4 text-sm leading-6 text-stone-500">
-                      {item.description}
+                      {cleanText(item.description)}
                     </p>
                     <span className="text-ink mt-auto flex items-center gap-2 pt-6 text-sm font-black uppercase">
                       Смотреть кейс

@@ -15,6 +15,7 @@ import {
 import { ContentPage } from "@/components/content-page";
 import {
   canonicalForPage,
+  cleanText,
   getAllPageSlugs,
   getPageBySlug,
   normalizeSlug,
@@ -33,7 +34,7 @@ const specialMetadata: Record<string, { title: string; description: string }> =
     },
     "nashi-proekty": {
       title: "Наши проекты",
-      description: "Реализованные проекты Deconstruction Group.",
+      description: "Реализованные проекты Брокк демонтаж Северо-Запад.",
     },
     "demontazhnyy-blog": {
       title: "Демонтажный блог",
@@ -43,7 +44,7 @@ const specialMetadata: Record<string, { title: string; description: string }> =
     novosti: {
       title: "Новости",
       description:
-        "Новости Deconstruction Group, техники и современных демонтажных технологий.",
+        "Новости Брокк демонтаж Северо-Запад, техники и современных демонтажных технологий.",
     },
     "arenda-demontazhnykh-robotov": {
       title: "Аренда роботов для демонтажа",
@@ -57,11 +58,11 @@ const specialMetadata: Record<string, { title: string; description: string }> =
     },
     kontakty: {
       title: "Контакты",
-      description: "Телефоны, email и форма связи Deconstruction Group.",
+      description: "Телефоны, email и форма связи Брокк демонтаж Северо-Запад.",
     },
     "o-kompanii": {
       title: "О компании",
-      description: "Опыт, технологии и подход Deconstruction Group.",
+      description: "Опыт, технологии и подход Брокк демонтаж Северо-Запад.",
     },
     price: {
       title: "Цены на демонтажные работы",
@@ -104,22 +105,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const page = getPageBySlug(slug);
   if (!page) return {};
   const canonical = canonicalForPage(page);
+  const title = cleanText(page.title);
+  const description = cleanText(page.description);
 
   return {
-    title: { absolute: page.title },
-    description: page.description,
+    title: { absolute: title },
+    description,
     alternates: { canonical },
     openGraph: {
       type: page.category === "blog" ? "article" : "website",
-      title: page.title,
-      description: page.description,
+      title,
+      description,
       url: canonical,
       images: ["/media/project-indoor.webp"],
     },
     twitter: {
       card: "summary_large_image",
-      title: page.title,
-      description: page.description,
+      title,
+      description,
       images: ["/media/project-indoor.webp"],
     },
   };

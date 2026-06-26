@@ -7,14 +7,14 @@ export function Footer() {
     <footer className="bg-ink py-14 text-white">
       <div className="site-container grid gap-10 md:grid-cols-[1.2fr_.8fr_.8fr]">
         <div>
-          <div className="inline-flex h-[148px] w-56 rounded-md bg-white p-3 shadow-sm ring-1 ring-white/20">
+          <div className="inline-flex h-[148px] w-56">
             <div className="relative size-full">
               <Image
-                src="/media/logo.webp"
+                src="/media/logo-bdsz.webp"
                 alt={siteConfig.name}
                 fill
                 sizes="224px"
-                className="object-contain object-left"
+                className="object-contain object-left drop-shadow-[0_2px_10px_rgba(0,0,0,0.35)]"
               />
             </div>
           </div>
