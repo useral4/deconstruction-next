@@ -1,19 +1,9 @@
-import {
-  ArrowRight,
-  Award,
-  Check,
-  Clock3,
-  Gauge,
-  HardHat,
-  Phone,
-  ShieldCheck,
-  Sparkles,
-  Wrench,
-} from "lucide-react";
+import { ArrowRight, Award, Check, Clock3, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { cases } from "@/content/cases";
 import { faq } from "@/content/faq";
+import { ExcavatorScrollScene } from "@/components/excavator-scroll-scene";
 import { LeadForm } from "@/components/forms/lead-form";
 import { CalculatorForm } from "@/components/forms/calculator-form";
 import { SectionHeading } from "@/components/section-heading";
@@ -59,29 +49,6 @@ const serviceGroups = [
     href: "/arenda-demontazhnykh-robotov",
     items: ["Техника с оператором", "Навесное оборудование", "Доставка"],
     image: "/media/brokk-110.webp",
-  },
-];
-
-const benefits = [
-  {
-    icon: Gauge,
-    title: "До 4× быстрее",
-    text: "Робот выполняет большой объём работ за смену и сокращает общий срок проекта.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Безопаснее",
-    text: "Оператор управляет техникой дистанционно и остаётся вне опасной зоны.",
-  },
-  {
-    icon: Wrench,
-    title: "Для сложных условий",
-    text: "Компактная техника работает внутри зданий, на перекрытиях и в ограниченном пространстве.",
-  },
-  {
-    icon: Sparkles,
-    title: "Точный результат",
-    text: "Контролируемое разрушение снижает вибрацию и риск повреждения соседних конструкций.",
   },
 ];
 
@@ -222,42 +189,7 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="section-space bg-ink overflow-hidden text-white">
-        <div className="site-container grid items-center gap-14 lg:grid-cols-[.9fr_1.1fr]">
-          <div className="bg-brand relative min-h-[530px] rounded-3xl">
-            <Image
-              src="/media/brokk-400.webp"
-              alt="Робот Brokk 400"
-              fill
-              sizes="(max-width: 1024px) 100vw, 45vw"
-              className="object-contain p-8 drop-shadow-2xl"
-            />
-            <div className="text-ink absolute -right-5 -bottom-6 rounded-2xl bg-white p-5 shadow-xl">
-              <HardHat className="text-brand-dark size-7" />
-              <strong className="mt-2 block text-xl">
-                Оператор вне зоны риска
-              </strong>
-            </div>
-          </div>
-          <div>
-            <SectionHeading
-              eyebrow="Преимущество"
-              title="Техника, которая берёт опасную работу на себя"
-              description="Дистанционно управляемые роботы дают высокую производительность там, где ручной труд медленнее и опаснее."
-              light
-            />
-            <div className="mt-10 grid gap-7 sm:grid-cols-2">
-              {benefits.map((item) => (
-                <div key={item.title}>
-                  <item.icon className="text-brand size-7" />
-                  <h3 className="mt-4 text-xl font-black">{item.title}</h3>
-                  <p className="mt-2 leading-7 text-white/55">{item.text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <ExcavatorScrollScene />
 
       <section className="section-space bg-[#f4f2ed]">
         <div className="site-container">
@@ -317,12 +249,14 @@ export function HomePage() {
           />
           <div className="mt-12 grid gap-px overflow-hidden rounded-3xl bg-black/10 md:grid-cols-5">
             {process.map((item, index) => (
-              <div key={item} className="bg-white p-7">
-                <span className="font-display text-brand-dark text-5xl font-black">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <p className="text-ink mt-12 leading-6 font-bold">{item}</p>
-              </div>
+              <Reveal key={item} delay={index * 0.04}>
+                <div className="h-full bg-white p-7">
+                  <span className="font-display text-brand-dark text-5xl font-black">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <p className="text-ink mt-12 leading-6 font-bold">{item}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>

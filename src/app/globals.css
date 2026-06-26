@@ -60,6 +60,55 @@ button {
   text-wrap: balance;
 }
 
+.reveal-item {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0) scale(0.985);
+  filter: blur(8px);
+  transition-property: opacity, transform, filter;
+  transition-duration: 720ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform, filter;
+}
+
+.reveal-item.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
+}
+
+.excavator-scene,
+.excavator-scene * {
+  transition-property:
+    color, background-color, border-color, box-shadow, opacity;
+}
+
+.excavator-robot,
+.excavator-circle,
+.excavator-dust,
+.excavator-chip,
+.excavator-impact,
+.excavator-stage-content {
+  transition: none;
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal-item {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
 @media (max-width: 640px) {
   .site-container {
     width: min(100% - 1.25rem, 1280px);
