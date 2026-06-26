@@ -82,10 +82,8 @@ button {
     color, background-color, border-color, box-shadow, opacity;
 }
 
-.hero-excavator-robot,
+.hero-excavator-video,
 .hero-excavator-circle,
-.hero-excavator-impact,
-.hero-excavator-spark,
 .hero-excavator-content {
   transition: none;
   will-change: transform, opacity;
