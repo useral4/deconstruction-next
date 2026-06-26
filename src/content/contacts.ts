@@ -14,6 +14,6 @@ export const contacts = {
   "13info@deconstruction.ru"
 ],
   addresses: [],
-  company: "Брокк Демонтаж (БДСЗ)",
+  company: "Брокк демонтаж Северо-Запад",
   site: "https://deconstruction.ru",
 } as const;

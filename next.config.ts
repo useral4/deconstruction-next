@@ -38,6 +38,7 @@ function migratedRedirects() {
 }
 
 const nextConfig: NextConfig = {
+  output: "standalone",
   poweredByHeader: false,
   compress: true,
   experimental: {

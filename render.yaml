@@ -2,11 +2,15 @@ services:
   - type: web
     name: deconstruction-next
     runtime: node
-    buildCommand: npm ci && npm run build
-    startCommand: npm run start:render
+    buildCommand: npm ci && npm run build && cp -r public .next/standalone/public && mkdir -p .next/standalone/.next && cp -r .next/static .next/standalone/.next/static
+    startCommand: node .next/standalone/server.js
     healthCheckPath: /api/health
     envVars:
       - key: NODE_VERSION
         value: 22
       - key: NEXT_PUBLIC_SITE_URL
         value: https://deconstruction-next.onrender.com
+      - key: HOSTNAME
+        value: 0.0.0.0
+      - key: NEXT_TELEMETRY_DISABLED
+        value: "1"

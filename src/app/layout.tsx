@@ -17,8 +17,8 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Демонтажные работы роботами Brokk | Deconstruction Group",
-    template: "%s | Deconstruction Group",
+    default: `Демонтажные работы роботами Brokk | ${siteConfig.name}`,
+    template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
   applicationName: siteConfig.name,
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ru_RU",
     siteName: siteConfig.name,
-    title: "Демонтажные работы роботами Brokk",
+    title: `Демонтажные работы роботами Brokk | ${siteConfig.name}`,
     description: siteConfig.description,
     url: siteConfig.url,
     images: [{ url: "/media/project-indoor.webp", width: 1680, height: 945 }],

@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { cases } from "@/content/cases";
 import { pages, type PageMeta } from "@/content/pages";
-import { services } from "@/content/services";
+import { visibleServices } from "@/content/services";
 import { LeadForm } from "@/components/forms/lead-form";
 import { SectionHeading } from "@/components/section-heading";
 import { ButtonLink } from "@/components/ui/button";
@@ -50,13 +50,13 @@ export function ServicesCatalog() {
   return (
     <>
       <PageHero
-        eyebrow="104 направления"
-        title="Услуги Deconstruction Group"
+        eyebrow={`${visibleServices.length} направлений`}
+        title="Услуги Брокк демонтаж Северо-Запад"
         description="Роботизированный демонтаж, алмазная резка, проходка, раскалывание, промышленная чистка и аренда техники."
       />
       <section className="section-space bg-[#f4f2ed]">
         <div className="site-container grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {services.map((service, index) => (
+          {visibleServices.map((service, index) => (
             <Link
               key={`${service.id}-${service.slug}`}
               href={`/${service.slug}`}

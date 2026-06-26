@@ -10,7 +10,7 @@ export function Footer() {
           <div className="relative h-[137px] w-52">
             <Image
               src="/media/logo.webp"
-              alt="Deconstruction Group"
+              alt={siteConfig.name}
               fill
               sizes="208px"
               className="object-contain object-left"

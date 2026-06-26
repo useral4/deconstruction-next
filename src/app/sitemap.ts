@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { pages } from "@/content/pages";
 import { canonicalForPage } from "@/lib/content";
+import { isHiddenServiceSlug } from "@/content/services";
 import { siteConfig } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -23,16 +24,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "weekly" as const,
     priority: slug === "uslugi" ? 0.9 : 0.7,
   }));
-  const entries = pages.map((page) => ({
-    url: canonicalForPage(page),
-    lastModified: now,
-    changeFrequency:
-      page.category === "blog" || page.category === "news"
-        ? ("monthly" as const)
-        : ("weekly" as const),
-    priority:
-      page.category === "service" || page.category === "geo" ? 0.8 : 0.6,
-  }));
+  const entries = pages
+    .filter((page) => !isHiddenServiceSlug(page.slug))
+    .map((page) => ({
+      url: canonicalForPage(page),
+      lastModified: now,
+      changeFrequency:
+        page.category === "blog" || page.category === "news"
+          ? ("monthly" as const)
+          : ("weekly" as const),
+      priority:
+        page.category === "service" || page.category === "geo" ? 0.8 : 0.6,
+    }));
 
   return [
     {

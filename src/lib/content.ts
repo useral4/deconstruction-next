@@ -1,7 +1,7 @@
 import audit from "../../_data/audit.json";
 import { cases } from "@/content/cases";
 import { pages, type PageMeta } from "@/content/pages";
-import { services } from "@/content/services";
+import { isHiddenServiceSlug, visibleServices } from "@/content/services";
 import { siteConfig } from "@/lib/site";
 
 type AuditPage = {
@@ -42,6 +42,7 @@ export function canonicalForPage(page: PageMeta) {
 
 export function getPageBySlug(slug: string | string[]) {
   const normalized = normalizeSlug(slug);
+  if (isHiddenServiceSlug(normalized)) return undefined;
   return pages.find((page) => normalizeSlug(page.slug) === normalized);
 }
 
@@ -56,7 +57,10 @@ export function getAllPageSlugs() {
     new Set(
       pages
         .map((page) => normalizeSlug(page.slug))
-        .filter((slug) => slug && !slug.endsWith(".html")),
+        .filter(
+          (slug) =>
+            slug && !slug.endsWith(".html") && !isHiddenServiceSlug(slug),
+        ),
     ),
   );
 }
@@ -73,7 +77,7 @@ export function getRelatedContent(page: PageMeta) {
       }));
   }
 
-  return services
+  return visibleServices
     .filter((item) => item.id !== page.id)
     .slice(0, 3)
     .map((item) => ({

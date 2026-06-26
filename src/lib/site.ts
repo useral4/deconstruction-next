@@ -1,8 +1,8 @@
 import { contacts } from "@/content/contacts";
 
 export const siteConfig = {
-  name: "Deconstruction Group",
-  legalName: "ООО «Деконстракшн групп»",
+  name: "Брокк демонтаж Северо-Запад",
+  legalName: "Брокк демонтаж Северо-Запад",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://deconstruction.ru",
   description:
     "Демонтаж зданий, бетона и металлоконструкций роботами Brokk в Санкт-Петербурге, Москве и по России.",

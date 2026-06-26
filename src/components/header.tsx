@@ -19,7 +19,7 @@ export function Header() {
           <Link href="/" className="relative block h-12 w-28 shrink-0 2xl:w-36">
             <Image
               src="/media/logo.webp"
-              alt="Deconstruction Group"
+              alt={siteConfig.name}
               fill
               priority
               sizes="144px"
@@ -31,7 +31,7 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="hover:text-brand shrink-0 whitespace-nowrap rounded-full px-1.5 py-3 text-[11px] leading-none font-black tracking-[.04em] uppercase transition hover:bg-white/5 2xl:px-2.5 2xl:text-[13px]"
+                className="hover:text-brand shrink-0 rounded-full px-1.5 py-3 text-[11px] leading-none font-black tracking-[.04em] whitespace-nowrap uppercase transition hover:bg-white/5 2xl:px-2.5 2xl:text-[13px]"
               >
                 {item.label}
               </Link>
@@ -43,7 +43,7 @@ export function Header() {
               onClick={() => {
                 if (window.ym) window.ym(85251700, "reachGoal", "phone_click");
               }}
-              className="hidden shrink-0 items-center gap-2 whitespace-nowrap px-1 py-3 text-sm font-black min-[1700px]:flex 2xl:text-[15px]"
+              className="hidden shrink-0 items-center gap-2 px-1 py-3 text-sm font-black whitespace-nowrap min-[1700px]:flex 2xl:text-[15px]"
             >
               <Phone className="text-brand size-4 shrink-0" />
               {siteConfig.phone}

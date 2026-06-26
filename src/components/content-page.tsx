@@ -36,13 +36,33 @@ const categoryImages: Record<string, string> = {
   static: "/media/project-city.webp",
 };
 
+const breadcrumbLabels: Record<string, string> = {
+  uslugi: "Услуги",
+  "uslugi/demontazh": "Демонтаж",
+  "uslugi/pilenie": "Алмазная резка",
+  "uslugi/prohodka": "Проходка",
+  "uslugi/raskalyvanie": "Раскалывание",
+  "uslugi/chistka": "Промышленная чистка",
+  "nashi-proekty": "Проекты",
+  "demontazhnyy-blog": "Блог",
+  novosti: "Новости",
+  "arenda-demontazhnykh-robotov": "Аренда",
+  gorod: "География",
+  price: "Цены",
+  "o-kompanii": "О компании",
+  kontakty: "Контакты",
+  primenenie: "Применение",
+  tpost: "Материалы",
+};
+
 function breadcrumbs(page: PageMeta) {
   const parts = normalizeSlug(page.slug).split("/").filter(Boolean);
   return parts.map((part, index) => ({
     label:
       index === parts.length - 1
         ? page.h1 || page.title
-        : part.replaceAll("-", " "),
+        : breadcrumbLabels[parts.slice(0, index + 1).join("/")] ||
+          part.replaceAll("-", " "),
     href: `/${parts.slice(0, index + 1).join("/")}`,
   }));
 }
@@ -118,12 +138,14 @@ export function ContentPage({ page }: { page: PageMeta }) {
             aria-label="Хлебные крошки"
           >
             <Link href="/">Главная</Link>
-            {crumbs.map((crumb) => (
+            {crumbs.map((crumb, index) => (
               <span key={crumb.href} className="flex items-center gap-2">
                 <ChevronRight className="size-3" />
-                <Link href={crumb.href} className="capitalize">
-                  {crumb.label}
-                </Link>
+                {index === crumbs.length - 1 ? (
+                  <span>{crumb.label}</span>
+                ) : (
+                  <Link href={crumb.href}>{crumb.label}</Link>
+                )}
               </span>
             ))}
           </nav>

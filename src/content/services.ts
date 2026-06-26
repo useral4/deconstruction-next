@@ -738,3 +738,18 @@ export const services: Service[] = [
     "description": "Профессиональный демонтаж хозпостроек, старых бытовок, времянок, сараев и гаражей в Санкт-Петербурге. Быстрый снос и утилизация бытовых построек. Гарантия, договор, вывоз мусора, точная смета. Звоните!"
   }
 ];
+
+const hiddenServiceSlugs = new Set([
+  "uslugi",
+  "uslugi/demontazh-bytovykh-postroyek",
+  "uslugi/demontazh-derevyannykh-konstruktsiy",
+  "uslugi/demontazh-zhd-putei",
+]);
+
+export function isHiddenServiceSlug(slug: string) {
+  return hiddenServiceSlugs.has(slug.replace(/^\/+|\/+$/g, ""));
+}
+
+export const visibleServices = services.filter(
+  (service) => !isHiddenServiceSlug(service.slug),
+);

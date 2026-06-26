@@ -22,6 +22,8 @@ import {
 
 type Props = { params: Promise<{ slug: string[] }> };
 
+export const dynamicParams = false;
+
 const specialMetadata: Record<string, { title: string; description: string }> =
   {
     uslugi: {
