@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { JsonLd } from "@/components/json-ld";
+import { VideoWidget } from "@/components/video-widget";
 import { YandexMetrika } from "@/components/yandex-metrika";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
@@ -68,6 +69,7 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Footer />
+        <VideoWidget />
         <YandexMetrika />
       </body>
     </html>

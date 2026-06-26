@@ -1,4 +1,4 @@
-/** Auto-generated from Tilda export — этап 0 */
+/** Content dataset for generated pages. */
 
 export interface PageMeta {
   id: string;

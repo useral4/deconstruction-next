@@ -1,4 +1,4 @@
-/** Auto-generated from Tilda export — этап 0 */
+/** Content dataset for project pages. */
 
 export interface CaseStudy {
   id: string;

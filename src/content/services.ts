@@ -1,4 +1,4 @@
-/** Auto-generated from Tilda export — этап 0 */
+/** Service content for catalog pages. */
 
 export interface Service {
   id: string;

@@ -1,4 +1,4 @@
-/** Auto-generated from Tilda export — этап 0 (главная) */
+/** FAQ content for the home page. */
 
 export interface FaqItem {
   question: string;

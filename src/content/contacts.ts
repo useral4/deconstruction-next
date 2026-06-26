@@ -1,4 +1,4 @@
-/** Auto-generated from Tilda export — этап 0 */
+/** Contact content for the site. */
 
 export const contacts = {
   phones: [

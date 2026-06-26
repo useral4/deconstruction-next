@@ -1,4 +1,4 @@
-/** Auto-generated from Tilda export — этап 0 (главная) */
+/** Review content for the home page. */
 
 export interface Review {
   author: string;
